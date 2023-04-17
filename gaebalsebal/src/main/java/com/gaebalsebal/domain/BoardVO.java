@@ -21,5 +21,6 @@ public class BoardVO {
 	private String board_use_yn;
 	private int board_category;
 	private List<TagVO> tag_list; 
+	private String chang;
 	
 }
