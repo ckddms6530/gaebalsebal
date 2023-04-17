@@ -20,7 +20,7 @@ public class BoardVO {
 	private int board_like;
 	private String board_use_yn;
 	private int board_category;
-	private List<TagVO> tag_list; 
+	private List<TagVO> tag_list;
+	private String boseong;
 	private String chang;
-	
 }
