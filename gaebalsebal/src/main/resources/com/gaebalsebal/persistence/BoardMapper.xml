@@ -3,106 +3,78 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
   
-  <mapper namespace="com.gaebalsebal.persistence.BoardMapper">
-  
-  <sql id="criteria">
-    <trim  suffix=" AND " prefixOverrides="OR">
-    	<foreach item='type' collection="typeArr">
-    	 	<trim prefix="OR">
-    	 		<choose>
-    	 			<when test="type == 'T'.toString()">
-    	 				board_title like '%' || #{keyword} || '%'
-    	 			</when>	
-    	 			<when test="type == 'C'.toString()">
-    	 				board_content like '%' || #{keyword} || '%'
-    	 			</when>	    	 			
-     	 			<when test="type == 'W'.toString()">
-    	 				board_writer like '%' || #{keyword} || '%'
-    	 			</when>
-				  <when test="type == 'H'.toString()">
-				    board_no IN (
-				      SELECT DISTINCT board_no 
-				      FROM tag 
-				      WHERE tag_name IN
-				      <foreach index="idx" item="keyword" collection="keywords" open="(" separator="," close=")">
-				      <if test="idx !=0">
-				         '#'||#{keyword} 
-				       </if> 
-				      </foreach>
-				    )
-				  </when>     	   
-    			</choose>
-    		</trim>	
-    	</foreach>	
-	 </trim>	   
+<mapper namespace="com.gaebalsebal.persistence.BoardMapper">
 
-  </sql>
-  
-  
-
-  <select id="getListWithPaging" resultType="BoardVO">
- <![CDATA[ 
-    SELECT *FROM (
-  		  SELECT /*+INDEX_DESC(BOARD BOARD_PK)*/ 
-			    ROWNUM RN
-			    , board_no
-			    , board_writer
-			    , member_id
-			    , board_title
-			    , board_content
-			    , board_create_date
-			    , board_update_date
-			    , board_view
-			    , board_like
-			    , board_use_yn
-			    , board_category
-			    , category_type
-			    FROM board b 
-			    INNER JOIN member m ON b.board_writer = m.member_no 
-			    INNER JOIN category c ON b.board_category = c.category_no 
-			    
-				    ]]>
-				    
-				     WHERE 
-
-				<include refid="criteria"></include>   
-					 <![CDATA[     
-	   			 ROWNUM <= #{pageNum} * #{amount}
-				]]>
-				         <choose>
-				          <when test="sort == 'board_no_asc'">
-				            ORDER BY board_no ASC
-				          </when>
-				          <when test="sort == 'board_no_desc'">
-				            ORDER BY board_no DESC
-				          </when>
-				          <when test="sort == 'board_title_asc'">
-				            ORDER BY board_title ASC
-				          </when>
-				          <otherwise>
-				            ORDER BY board_no DESC
-				          </otherwise>
-				        </choose>
-					 <![CDATA[ 		    
-				)
-				WHERE RN > (#{pageNum} -1) * #{amount}
-				]]>
-			  </select>
-  
-  
-  <select id="getTotalCount" resultType="int">
-  	select count(*) from board
-  	where
-  	
-  	<include refid="criteria"></include>
-  	
-  	board_no > 0
+  <select id="selectBoardList" resultType="BoardVO">
+  	SELECT *
+	    FROM board
+	    WHERE board_category = #{board_category}
+	        and board_use_yn = 'Y'
   </select>
-
-<select id="getTagList" resultType="TagVO">
-    SELECT tag_name,board_no FROM tag WHERE board_no = #{board_no}
-</select>
-
-
+  
+  <select id="selectBoard" resultType="BoardVO">
+  	SELECT *
+	    FROM board
+	    WHERE board_no = #{board_no}
+  </select>
+  
+  <update id="updateView">
+  	UPDATE board
+        SET board_view = board_view + 1
+        WHERE board_no = #{board_no}
+  </update>
+  
+     <insert id="insertBoard" parameterType="BoardVO" useGeneratedKeys="true" keyProperty="board_no" keyColumn="board_no">
+	   <selectKey keyProperty="board_no" order="BEFORE" resultType="int">
+	         SELECT seq_board_no_pk.nextval FROM dual
+	   </selectKey>
+  	INSERT INTO board
+	    VALUES( #{board_no} -- board_no
+	            , #{board_category} -- board_category
+	            , #{board_title} -- board_title
+	            , '작성자' -- board_writer
+	            , #{board_content} -- board_content
+	            , 0 -- board_view
+	            , 0 -- board_like
+	            , sysdate -- board_create_date
+	            , null -- board_update_date
+	            , 'Y' -- board_use_yn
+	            , 1 -- member_no
+    )
+  </insert>
+  
+  <insert id="insertTag">
+		INSERT INTO tag
+		    VALUES( seq_tag_no_pk.nextval -- tag_no
+		            , #{tag_name} -- tag_name
+		            , #{board_no} -- board_no
+    )
+	</insert>
+	
+	<insert id="insertFile">
+		INSERT INTO files
+		    VALUES( seq_file_no_pk.nextval -- file_no
+		            , #{file_name} -- file_name
+		            , #{file_uuid} -- file_uuid
+		            , #{folder_path} -- folder_path
+		            , #{board_no} -- board_no
+		    )
+	</insert>
+  
+  <update id="updateBoard">
+  	UPDATE board
+	    SET board_category = #{board_category}
+	    	, board_title = #{board_title}
+	        , board_content = #{board_content}
+	        , board_update_date = sysdate
+	    WHERE board_no = #{board_no}
+  </update>
+  
+  <delete id="deleteBoard">
+  	UPDATE board
+	    SET board_use_yn = 'N'
+	    WHERE board_no = #{board_no}
+  </delete>
+  
 
 </mapper>
