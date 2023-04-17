@@ -10,7 +10,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta http-equiv="X-UA-Compatible" content="ie=edge">
 <title>개발자 커뮤니티 | 개발새발</title>
-
+	<script src="https://kit.fontawesome.com/2bc97b2f03.js" crossorigin="anonymous"></script>
 	<!-- Google Font -->
 	<link
 		href="https://fonts.googleapis.com/css2?family=Cairo:wght@200;300;400;600;900&amp;display=swap"
@@ -33,14 +33,20 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"></script>
 	
+	
 	<script>
+	function sort(){
+		alert();
+	}
+	
+	
 	$(document).ready(function() {
 
 		var actionForm = $("#actionForm");
 		var searchForm = $("#searchForm");
 
 			
-			$(".paginate_button a").on("click", function(e)  {
+			$(".product__pagination a").on("click", function(e)  {
 				
 				
 				e.preventDefault();
@@ -401,14 +407,15 @@
 				<table class="table table-striped table-bordered table-hover">
 					<thead>
 						<tr>
-							<th>#번호</th>
+						
+							<th>#번호  </th>
 							<th>카테고리</th>
 							<th>제목</th>
 							<th>작성자</th>
-							<th>작성일</th>
+							<th>작성일 <i class="fa-solid fa-arrow-up-wide-short" style="color: #b3c0d5; cursor: pointer;" onclick="sort()"></i></th>
 							<th>수정일</th>
-							<th>좋아요</th>
-							<th>조회수</th>
+							<th>좋아요 <i class="fa-solid fa-arrow-up-wide-short" style="color: #b3c0d5;"></i> </th>
+							<th>조회수 <i class="fa-solid fa-arrow-up-wide-short" style="color: #b3c0d5;"></i> </th>
 							<th>해시태그</th>
 							
 						</tr>
@@ -416,7 +423,7 @@
 
           <c:forEach items="${list}" var="board">
             <tr>
-              <td><c:out value="${board.board_no}" /></td>
+              <td><c:out value="${board.board_no}" /> </td>
                <td><c:out value="${board.category_type}" /></td>
                <td>
                   <a class='move'  href='<c:out value="${board.board_no}"/>' style="font-size: 20px">
@@ -446,21 +453,21 @@
         	<ul class="pagination"> 
         		
         		<c:if test="${pageMaker.prev}">
-        			<li class="paginate_button page-item previous">
-        			<a href="${pageMaker.startPage -1}">이전</a>
+        			<li class="product__pagination page-item previous">
+        			<a href="${pageMaker.startPage -1}"><</a>
         			</li>
 	
         		</c:if>
         		
         		<c:forEach var="num" begin="${pageMaker.startPage}" end="${ pageMaker.endPage }">
-        			<li class="paginate_button ${ pageMaker.cri.pageNum == num ? 'active':'' }">
+        			<li class="product__pagination ${ pageMaker.cri.pageNum == num ? 'active':'' }">
         				<a href="${num}">${num}</a></li>
 
         		</c:forEach>
         		
         		<c:if test="${pageMaker.next}">
-        			<li class="paginate_button next">
-        			<a href="${ pageMaker.endPage +1}">다음</a></li>
+        			<li class="product__pagination next">
+        			<a href="${ pageMaker.endPage +1}">></a></li>
         		
         		</c:if>
         	</ul>
@@ -492,7 +499,7 @@
         			<input type="text" name="keyword" />
         			<input type='hidden' name="pageNum" value='${pageMaker.cri.pageNum }'>
         			<input type='hidden' name="amount" value='${pageMaker.cri.amount }'>
-        			<button class='btn btn-default'>Search</button>
+        			<button class='site-btn'>Search</button>
         		</form>
         		
         		
@@ -613,7 +620,7 @@
 	<script src="/js/mixitup.min.js"></script>
 	<script src="/js/owl.carousel.min.js"></script>
 	<script src="/js/main.js"></script>
-
+	
 
 </body>
 </html>

@@ -68,14 +68,13 @@ var searchForm = $("#searchForm");
 
 </script>
 
-
 </head>
 <body>
 		<div class="panel-body">
 				<table class="table table-striped table-bordered table-hover">
 					<thead>
 						<tr>
-							<th>#번호</th>
+							<th>#번호 <i class="fa-solid fa-arrow-up-arrow-down fa-xs" style="color: #c8cdd5;"></i></th>
 							<th>카테고리</th>
 							<th>제목</th>
 							<th>작성자</th>
@@ -117,7 +116,7 @@ var searchForm = $("#searchForm");
         		</c:if>
         		
         		<c:forEach var="num" begin="${pageMaker.startPage}" end="${ pageMaker.endPage }">
-        			<li class="paginate_button ${ pageMaker.cri.pageNum == num ? 'active':'' }">
+        			<li class="product__pagination ${ pageMaker.cri.pageNum == num ? 'active':'' }">
         				<a href="${num}">${num}</a></li>
 
         		</c:forEach>
