@@ -1,3 +1,4 @@
+
 package com.gaebalsebal.domain;
 
 import java.util.Date;
@@ -23,3 +24,4 @@ public class BoardVO {
 	private List<TagVO> tag_list;
 
 }
+
