@@ -54,6 +54,7 @@ private final AdminService service;
         cell.setCellValue("작성일");
         cell = row.createCell(5);
         cell.setCellValue("게시글허용");
+        cell.setCellValue("게시글허용");
 
 
         // Body
