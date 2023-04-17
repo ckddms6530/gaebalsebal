@@ -76,6 +76,7 @@ var searchForm = $("#searchForm");
 					<thead>
 						<tr>
 							<th>#번호</th>
+							<th>카테고리</th>
 							<th>제목</th>
 							<th>작성자</th>
 							<th>작성일</th>
@@ -88,11 +89,12 @@ var searchForm = $("#searchForm");
           <c:forEach items="${list}" var="board">
             <tr>
               <td><c:out value="${board.board_no}" /></td>
+              <td><c:out value="${board.category_type}" /></td>
                <td>
                   <a class='move' href='<c:out value="${board.board_no}"/>'>
                   <c:out value="${board.board_title}" />   <b>[  <%-- <c:out value="${board.replyCnt}" />  --%> ]</b>
                   </a>
-              <td><c:out value="${board.board_writer}" /></td>
+              <td><c:out value="${board.member_id}" /></td>
               <td><fmt:formatDate pattern="yyyy-MM-dd"
                   value="${board.board_create_date}" /></td>
               <td><fmt:formatDate pattern="yyyy-MM-dd"
