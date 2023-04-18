@@ -12,4 +12,6 @@ public interface AdminService {
 public List<BoardVO> getNonActiveBoardList();
 
 
+
+
 }

@@ -12,8 +12,10 @@ import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.gaebalsebal.domain.BoardVO;
 import com.gaebalsebal.service.interfaces.AdminService;
@@ -29,8 +31,19 @@ import lombok.RequiredArgsConstructor;
 public class AdminController {
 
 private final AdminService service;
+	@GetMapping("main")
+	public String adminMain(Model model) {
+		
+		model.addAttribute( "list" , service.getNonActiveBoardList());
+		 
+		
+		
+		return "/admin/admin";
+	}
+
 
     @GetMapping("excel")
+    @ResponseBody
     public void excelDownload(HttpServletResponse response) throws IOException {
 //        Workbook wb = new HSSFWorkbook();
         Workbook wb = new XSSFWorkbook();
@@ -78,11 +91,12 @@ private final AdminService service;
         // 컨텐츠 타입과 파일명 지정
         response.setContentType("ms-vnd/excel");
 //        response.setHeader("Content-Disposition", "attachment;filename=example.xls");
-        response.setHeader("Content-Disposition", "attachment;filename=삭제한 게시물 리스트.xlsx");
+        response.setHeader("Content-Disposition", "attachment;filename=excel.xlsx");
 
         // Excel File Output
         wb.write(response.getOutputStream());
         wb.close();
+		
     }
 
 }
