@@ -393,7 +393,7 @@
 					<div class="product__discount">
 						<div class="section-title product__discount__title">
 							<div id="boardTitle">
-								<h2>자유 게시판</h2>
+								<h2 id="boardTitleH2">자유 게시판</h2>
 								<p></p>
 								<p>자유로운 글쓰기가 가능한 게시판입니다</p>
 							</div>
@@ -402,7 +402,8 @@
 						<div id="boardList">
 							<!-- 버튼 -->
 							<div class="board_bt_wrap">
-								<button type="button" class="btn btn-outline-success">게시글 등록하기</button>
+								<a href="/board/board-register" class="btn btn-outline-success">게시글
+									등록하기</a>
 							</div>
 				<table class="table table-striped table-bordered table-hover">
 					<thead>
@@ -426,7 +427,7 @@
               <td><c:out value="${board.board_no}" /> </td>
                <td><c:out value="${board.category_type}" /></td>
                <td>
-                  <a class='move'  href='<c:out value="${board.board_no}"/>' style="font-size: 20px">
+                  <a class='move'  href='/board/board-read?board_no=${board.board_no}' style="font-size: 20px">
                   <c:out value="${board.board_title}" />   <b>[  <%-- <c:out value="${board.replyCnt}" />  --%> ]</b>
                   </a>
                   

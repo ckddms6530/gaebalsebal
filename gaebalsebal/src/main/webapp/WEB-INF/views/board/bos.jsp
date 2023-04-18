@@ -11,30 +11,31 @@
 <meta http-equiv="X-UA-Compatible" content="ie=edge">
 <title>개발자 커뮤니티 | 개발새발</title>
 
-	<!-- Google Font -->
-	<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@200;300;400;600;900&amp;display=swap" rel="stylesheet">
-	
-	<!-- Css Styles -->
-	<link rel="stylesheet" href="/css/bootstrap.min.css" type="text/css">
-	<link rel="stylesheet" href="/css/font-awesome.min.css" type="text/css">
-	<link rel="stylesheet" href="/css/elegant-icons.css" type="text/css">
-	<link rel="stylesheet" href="/css/nice-select.css" type="text/css">
-	<link rel="stylesheet" href="/css/jquery-ui.min.css" type="text/css">
-	<link rel="stylesheet" href="/css/owl.carousel.min.css" type="text/css">
-	<link rel="stylesheet" href="/css/slicknav.min.css" type="text/css">
-	<link rel="stylesheet" href="/css/style.css" type="text/css">
-	<link rel="stylesheet" href="/css/board.css" type="text/css">
-	<link rel="stylesheet" href="/css/boardread.css" type="text/css">
-	
-	<!-- 버튼 -->
-	 <!--<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet">-->
-    <!-- <link href="https://getbootstrap.com/docs/5.3/assets/css/docs.css" rel="stylesheet"> -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"></script>
-	
-	
-	<!-- icon img -->
-	<link rel="stylesheet" href="/css/font-awesome.min.css" type="text/css">
-	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css" />
+<!-- Google Font -->
+<link
+	href="https://fonts.googleapis.com/css2?family=Cairo:wght@200;300;400;600;900&amp;display=swap"
+	rel="stylesheet">
+
+<!-- Css Styles -->
+<link rel="stylesheet" href="/css/bootstrap.min.css" type="text/css">
+<link rel="stylesheet" href="/css/font-awesome.min.css" type="text/css">
+<link rel="stylesheet" href="/css/elegant-icons.css" type="text/css">
+<link rel="stylesheet" href="/css/nice-select.css" type="text/css">
+<link rel="stylesheet" href="/css/jquery-ui.min.css" type="text/css">
+<link rel="stylesheet" href="/css/owl.carousel.min.css" type="text/css">
+<link rel="stylesheet" href="/css/slicknav.min.css" type="text/css">
+<link rel="stylesheet" href="/css/style.css" type="text/css">
+<link rel="stylesheet" href="/css/board.css" type="text/css">
+
+<!-- 버튼 -->
+<!--<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet">-->
+<!-- <link href="https://getbootstrap.com/docs/5.3/assets/css/docs.css" rel="stylesheet"> -->
+<script
+	src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"></script>
+
+
+<!-- icon img -->
+<link rel="stylesheet" href="/css/font-awesome.min.css" type="text/css">
 
 
 
@@ -74,13 +75,13 @@
 				<li class="active"><a href="./index.html">메인</a></li>
 				<li><a href="./shop-grid.html">공지사항</a></li>
 				<li><a href="#">게시판</a>
-					<ul class="header__menu__dropdown">
-						<li><a href="./shop-details.html">정보공유</a></li>
-						<li><a href="./shoping-cart.html">질문</a></li>
-						<li><a href="./checkout.html">구인구직</a></li>
-						<li><a href="./blog-details.html">자유 게시판</a></li>
-						<li><a href="./blog-details.html">익명 게시판</a></li>
-					</ul></li>
+<!-- 					<ul class="header__menu__dropdown"> -->
+<!-- 						<li><a href="/board/boardlist?board_category=정보공유">정보공유</a></li> -->
+<!-- 						<li><a href="/board/boardlist?board_category=질문게시판">질문</a></li> -->
+<!-- 						<li><a href="/board/boardlist?board_category=구인구직">구인구직</a></li> -->
+<!-- 						<li><a href="/board/boardlist?board_category=자유게시판">자유 게시판</a></li> -->
+<!-- 						<li><a href="/board/boardlist?board_category=익명게시판">익명 게시판</a></li> -->
+<!-- 					</ul></li> -->
 				<li><a href="./blog.html">전체 카테고리</a></li>
 				<li><a href="./contact.html">My Page</a></li>
 			</ul>
@@ -224,8 +225,8 @@
 								<li><a href="/board/board-list?board_category=정보공유">정보공유</a></li>
 								<li><a href="/board/board-list?board_category=질문게시판">질문</a></li>
 								<li><a href="/board/board-list?board_category=구인구직">구인구직</a></li>
-								<li><a href="/board/board-list?board_category=자유게시판">자유게시판</a></li>
-								<li><a href="/board/board-list?board_category=익명게시판">익명게시판</a></li>
+								<li><a href="/board/board-list?board_category=자유게시판">자유 게시판</a></li>
+								<li><a href="/board/board-list?board_category=익명게시판">익명 게시판</a></li>
 							</ul>
 						</div>
 						<div class="sidebar__item"></div>
@@ -270,7 +271,8 @@
 													</a>
 												</div>
 											</div>
-											<div class="owl-item cloned" style="width: 262.5px;">												<div class="latest-prdouct__slider__item">
+											<div class="owl-item cloned" style="width: 262.5px;">
+												<div class="latest-prdouct__slider__item">
 													<a href="#" class="latest-product__item">
 														<div class="latest-product__item__pic">
 															<img src="img/latest-product/lp-1.jpg" alt="">
@@ -331,68 +333,48 @@
 					<div class="product__discount">
 						<div class="section-title product__discount__title">
 							<div id="boardTitle">
-								<h2>${board.board_category }</h2>
+								<h2>${category}</h2>
 								<p></p>
 								<p>자유로운 글쓰기가 가능한 게시판입니다</p>
 							</div>
 						</div>
+
+						<div id="boardList">
+							<!-- 버튼 -->
 							<div class="board_bt_wrap">
-								<button type="button" class="btn btn-outline-success">글 수정하기</button>
+								<a href="/board/board-register" class="btn btn-outline-success">게시글
+									등록하기</a>
 							</div>
-							<article class="post">
-								<header style="height: 120px;">
-									<div class="title">
-					                    ${board.board_title}
-					                    <form id="boardForm" action="/board/board-register" method="get">
-						                    <input type="text" name="board_no" value="${board.board_no }" hidden="true">
-						                    <input type="text" name="board_category" value="${board.board_category }" hidden="true">
-						                    <input type="text" name="board_title" value="${board.board_title }" hidden="true">
-						                    <input type="text" name="board_content" value="${board.board_content }" hidden="true">
-					                    </form>
-					                </div>
-									<div class="meta">
-										<a href="#" class="author"><img src="/img/character.jpg" alt="">&emsp;<span class="name">${board.board_writer}</span></a>
-										<div class="info">
-						                    <dl>
-						                        <dt>게시일</dt>
-						                        <dd><fmt:formatDate value="${board.board_create_date }" pattern="yyyy.MM.dd"/></dd>
-						                    </dl>
-						                    <dl>
-						                        <dt>조회</dt>
-						                        <dd>${board.board_view }</dd>
-						                    </dl>
-										</div>
-										<div style="float: right; margin-top: -20px; margin-right: 10px">
-											<button type="button" onclick="modify();">수정</button>
-											<button type="button" onclick="remove();">삭제</button>
-										</div>
-									</div>
-									
-								</header><br>
-									${board.board_content}
-								<footer>
-									<ul class="stats">
-										<div>
-										<li><a href="#">#야근</a></li>
-										<li><a href="#">#sad</a></li>
-										</div>
-										<div>
-									
-										<li class="like-toggle">
-										<c:if test="${0 == board.board_like_check}">
-										<i class="fa-sharp fa-regular fa-heart" style="color: #4ec224;" onclick='like(this)'></i>
-										</c:if>
-										<c:if test="${1 == board.board_like_check}">
-										<i class="fa-sharp fa-solid fa-heart" style="color: #4ec224;" onclick='like(this)'></i>
-										</c:if>
-										
-										<span class="like-count"> ${board.board_like} </span></li>
-
-
-										</div>
-									</ul>
-								</footer>
-							</article>
+							<table class="table">
+								<thead>
+									<tr>
+										<th scope="col">#</th>
+										<th scope="col">제목</th>
+										<th scope="col">작성자</th>
+										<th scope="col">작성일</th>
+										<th scope="col">조회수</th>
+									</tr>
+								</thead>
+								<tbody>
+									<c:forEach var="boardList" items="${boardList }" varStatus="status">
+										<tr class="jsgrid-filter-row">
+											<th class="jsgrid-cell jsgrid-align-center">${boardList.board_no }</th>
+											<td class="jsgrid-cell jsgrid-align-center"><a href="/board/board-read?board_no=${boardList.board_no}">${boardList.board_title }</a></td>
+											<td class="jsgrid-cell jsgrid-align-center">${boardList.board_writer }</td>
+											<td class="jsgrid-cell jsgrid-align-center"><fmt:formatDate value="${boardList.board_create_date }" pattern="yyyy.MM.dd"/></td>
+											<td class="jsgrid-cell jsgrid-align-center">${boardList.board_view }</td>
+										</tr>
+									</c:forEach>
+								</tbody>
+							</table>
+							<!-- 버튼 그룹 -->
+							<div class="board_page">
+								<a href="#" class="bt first"> << </a> <a href="#"
+									class="bt prev"> < </a> <a href="#" class="bt num on">1</a> <a
+									href="#" class="bt num">2</a> <a href="#" class="bt num">3</a>
+								<a href="#" class="bt next">></a> <a href="#" class="bt last">>></a>
+							</div>
+						</div>
 					</div>
 				</div>
 			</div>
@@ -420,8 +402,10 @@
 						<h6>Thanks</h6>
 						<ul>
 							<li><a href="#">codehows</a></li>
-							<li><a href="https://kr.freepik.com/free-vector/set-with-two-horizontal-web-hosting-landing-pages-with-isometric-icons-of-cloud-storage-tariff-plan-vector-illustration_39093900.htm#page=2&query=coding&position=20&from_view=keyword&track=sph">macrovector</a> Freepik</li>
-							<li><a href="#">Delivery infomation</a></li>
+							<li><a
+								href="https://kr.freepik.com/free-vector/set-with-two-horizontal-web-hosting-landing-pages-with-isometric-icons-of-cloud-storage-tariff-plan-vector-illustration_39093900.htm#page=2&query=coding&position=20&from_view=keyword&track=sph">some
+									Img| macrovector</a> Freepik</li>
+							<li><a href="#">some Template| tamaj@lkn.io @ajlkn</a></li>
 							<li><a href="#">Privacy Policy</a></li>
 							<li><a href="#">Our Sitemap</a></li>
 						</ul>
@@ -485,59 +469,9 @@
 	<script src="/js/jquery.slicknav.js"></script>
 	<script src="/js/mixitup.min.js"></script>
 	<script src="/js/owl.carousel.min.js"></script>
-	<script src="/js/main.js"></script>
 	<script src="/js/board.js"></script>
-		<script>
-	
-		
-		  
-		function like(likeBtn) {
-			 const boardNo = ${board.board_no}; // 좋아요를 누른 게시글의 번호 가져오기
-			 console.log(boardNo);
-			
-			  const likeCount = document.querySelector('.like-count'); // 좋아요 수를 표시하는 HTML 요소 선택
+	<script src="/js/main.js"></script>
 
-			  likeBtn.classList.toggle('fa-regular'); // 꽉 찬 하트 아이콘과 빈 하트 아이콘을 번갈아가며 표시
-			  likeBtn.classList.toggle('fa-solid');
-			  
-			  const currentCount = parseInt(likeCount.textContent); // 현재 좋아요 수를 가져와서 정수로 변환
-			  if (likeBtn.classList.contains('fa-regular')) { // 좋아요 버튼이 비활성화된 경우
-				  
-				  $.ajax({
-					    type: 'POST',
-					    url: '/board/dislike',
-					    data: {
-					      board_no: boardNo,
-					      member_no: 1
-					    },
-					    success: function(data) {
-					    	likeCount.innerHTML = parseInt(likeCount.textContent) - 1  ;
-					    },
-					    error: function(error) {
-					      console.log(error);
-					    }
-					  });
-			    
-			  } else { // 좋아요 버튼이 활성화된 경우
-				  $.ajax({
-					    type: 'POST',
-					    url: '/board/like',
-					    data: {
-						      board_no: boardNo,
-						      member_no: 1
-					    },
-					    success: function(data) {
-					    	likeCount.innerHTML = parseInt(likeCount.textContent) + 1;
-					    },
-					    error: function(error) {
-					      console.log(error);
-					    }
-					  });
-			  }
-			}
-		
-	
-		</script>	
 
 </body>
 </html>

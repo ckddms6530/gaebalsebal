@@ -53,7 +53,7 @@
 			    , board_create_date
 			    , board_update_date
 			    , board_view
-			    , board_like
+			    , (select count(*) from heart where b.board_no = heart.board_no)as board_like
 			    , board_use_yn
 			    , board_category
 			    , category_type
@@ -103,6 +103,88 @@
     SELECT tag_name,board_no FROM tag WHERE board_no = #{board_no}
 </select>
 
-
+<select id="selectBoardList" resultType="BoardVO">
+  	SELECT *
+	    FROM board
+	    WHERE board_category = #{board_category}
+	        and board_use_yn = 'Y'
+  </select>
+  
+  <select id="selectBoard" resultType="BoardVO">
+  	SELECT board.* 
+  	,(SELECT COUNT(*) FROM heart WHERE board_no = board.board_no) AS board_like
+  	,(SELECT COUNT(*) FROM heart WHERE BOARD_NO = #{board_no} AND MEMBER_NO = #{member_no} )  AS board_like_check
+	    FROM board
+	    WHERE board_no = #{board_no}
+  </select>
+  
+  <update id="updateView">
+  	UPDATE board
+        SET board_view = board_view + 1
+        WHERE board_no = #{board_no}
+  </update>
+  
+     <insert id="insertBoard" parameterType="BoardVO" useGeneratedKeys="true" keyProperty="board_no" keyColumn="board_no">
+	   <selectKey keyProperty="board_no" order="BEFORE" resultType="int">
+	         SELECT seq_board_no_pk.nextval FROM dual
+	   </selectKey>
+  	INSERT INTO board
+	    VALUES( #{board_no} -- board_no
+	            , #{board_category} -- board_category
+	            , #{board_title} -- board_title
+	            , '작성자' -- board_writer
+	            , #{board_content} -- board_content
+	            , 0 -- board_view
+	            , 0 -- board_like
+	            , sysdate -- board_create_date
+	            , null -- board_update_date
+	            , 'Y' -- board_use_yn
+	            , 1 -- member_no
+    )
+  </insert>
+  
+  <insert id="insertTag">
+		INSERT INTO tag
+		    VALUES( seq_tag_no_pk.nextval -- tag_no
+		            , #{tag_name} -- tag_name
+		            , #{board_no} -- board_no
+    )
+	</insert>
+	
+	<insert id="insertFile">
+		INSERT INTO files
+		    VALUES( seq_file_no_pk.nextval -- file_no
+		            , #{file_name} -- file_name
+		            , #{file_uuid} -- file_uuid
+		            , #{folder_path} -- folder_path
+		            , #{board_no} -- board_no
+		    )
+	</insert>
+  
+  <update id="updateBoard">
+  	UPDATE board
+	    SET board_category = #{board_category}
+	    	, board_title = #{board_title}
+	        , board_content = #{board_content}
+	        , board_update_date = sysdate
+	    WHERE board_no = #{board_no}
+  </update>
+  
+  <delete id="deleteBoard">
+  	UPDATE board
+	    SET board_use_yn = 'N'
+	    WHERE board_no = #{board_no}
+  </delete>
+  
+    <insert id="increaseLikeCount">
+	insert into heart values (heart_no_seq.nextval , 'Y' , #{member_no} , #{board_no})
+  </insert>
+  
+    <delete id="decreaseLikeCount">
+  	delete from heart 
+	    
+	    WHERE board_no = #{board_no}
+	    AND member_no =  #{member_no}
+  </delete>
 
 </mapper>
