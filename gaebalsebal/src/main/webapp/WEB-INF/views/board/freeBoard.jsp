@@ -34,65 +34,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"></script>
 	
 	
-	<script>
-	function sort(){
-		alert();
-	}
-	
-	
-	$(document).ready(function() {
 
-		var actionForm = $("#actionForm");
-		var searchForm = $("#searchForm");
-
-			
-			$(".product__pagination a").on("click", function(e)  {
-				
-				
-				e.preventDefault();
-				
-				console.log('click');
-				
-				
-				actionForm.find("input[name='pageNum']").val($(this).attr("href"));
-				actionForm.submit();
-			});
-			
-			
-			
-			$("#searchForm button").on(
-					"click",
-					function(e) {
-						
-						if (!searchForm.find("option:selected")
-								.val()) {
-							alert("검색종류를 선택하세요");
-							return false;
-						}
-
-						if (!searchForm.find(
-								"input[name='keyword']").val()) {
-							alert("키워드를 입력하세요");
-							return false;
-						}
-						
-						searchForm.find("input[name='pageNum']")
-								.val("1");
-						e.preventDefault();
-
-						searchForm.submit();
-
-					});	
-			
-			$("#sortForm select[name='sortSelect']").on("change", function() {
-			    
-			    $("#sortForm input[name='sort']").val($(this).val());
-			    $("#sortForm").submit();
-			});
-			
-			
-		});
-</script>
 	
 	<!-- icon img -->
 	<link rel="stylesheet" href="/css/font-awesome.min.css" type="text/css">
@@ -405,7 +347,7 @@
 								<a href="/board/board-register" class="btn btn-outline-success">게시글
 									등록하기</a>
 							</div>
-				<table class="table table-striped table-bordered table-hover">
+				<table class="table">
 					<thead>
 						<tr>
 						
@@ -621,7 +563,65 @@
 	<script src="/js/mixitup.min.js"></script>
 	<script src="/js/owl.carousel.min.js"></script>
 	<script src="/js/main.js"></script>
+		<script>
+	function sort(){
+		alert();
+	}
 	
+	
+	$(document).ready(function() {
+
+		var actionForm = $("#actionForm");
+		var searchForm = $("#searchForm");
+
+			
+			$(".product__pagination a").on("click", function(e)  {
+				
+				
+				e.preventDefault();
+				
+				console.log('click');
+				
+				
+				actionForm.find("input[name='pageNum']").val($(this).attr("href"));
+				actionForm.submit();
+			});
+			
+			
+			
+			$("#searchForm button").on(
+					"click",
+					function(e) {
+						
+						if (!searchForm.find("option:selected")
+								.val()) {
+							alert("검색종류를 선택하세요");
+							return false;
+						}
+
+						if (!searchForm.find(
+								"input[name='keyword']").val()) {
+							alert("키워드를 입력하세요");
+							return false;
+						}
+						
+						searchForm.find("input[name='pageNum']")
+								.val("1");
+						e.preventDefault();
+
+						searchForm.submit();
+
+					});	
+			
+			$("#sortForm select[name='sortSelect']").on("change", function() {
+			    
+			    $("#sortForm input[name='sort']").val($(this).val());
+			    $("#sortForm").submit();
+			});
+			
+			
+		});
+</script>
 
 </body>
 </html>

@@ -342,11 +342,11 @@
 			            <form id="registerForm" action="/board/board-register" method="post">
 						    <select class="nice-select wide" name="board_category">
 						        <option value="">카테고리를 선택하세요</option>
-						        <option value="정보공유">정보공유</option>
-						        <option value="질문게시판">질문게시판</option>
+						        <option value="정보">정보공유</option>
+						        <option value="질문">질문게시판</option>
 						        <option value="구인구직">구인구직</option>
-						        <option value="자유게시판">자유게시판</option>
-						        <option value="익명게시판">익명게시판</option>
+						        <option value="자유">자유게시판</option>
+						        <option value="익명">익명게시판</option>
 						    </select><br><br>
 						    <c:if test="${not empty boardRegister.board_no}"><input type="text" name="board_no" value="${boardRegister.board_no }" hidden="true"></c:if>
 			              <div class="form-group">

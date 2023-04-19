@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ 
+ <mapper namespace="com.gaebalsebal.persistence.FindIdMapper">
+ 
+ 	<select id="findID" resultType="String">
+ 	select member_id from member where member_name = #{member_name} and member_email = #{member_email}
+ 	</select>
+ 
+ </mapper>
+  

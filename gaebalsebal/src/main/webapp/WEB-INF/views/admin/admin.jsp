@@ -628,23 +628,9 @@
 	
 	function excel() {
 		
-		
-		$.ajax({
-		    type: 'GET',
-		    url: '/admin/excel',
-		    data: {
+		location.href = '/admin/excel';
 
-		    },
-		    success: function() {
-		    	
-		    },
-		    error: function(error) {
-		      console.log(error);
-		    }
-		  });
-		
 	}
-	
 	</script>
 </body>
 </html>

@@ -3651,7 +3651,6 @@ input::-moz-focus-inner {
 		
 		.reply_table {
 			text-overflow: ellipsis;
-			white-space: nowrap; 
 		}
 		
 		

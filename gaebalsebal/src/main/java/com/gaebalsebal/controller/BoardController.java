@@ -28,6 +28,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.gaebalsebal.domain.BoardVO;
+import com.gaebalsebal.domain.CommentVO;
 import com.gaebalsebal.domain.Criteria;
 import com.gaebalsebal.domain.FileVO;
 import com.gaebalsebal.domain.PageDTO;
@@ -67,7 +68,7 @@ public class BoardController {
 	@GetMapping("board-list")
 	public String boardList(BoardVO vo, Model model) {
 		if(vo.getCategory_type() == null) {
-			vo.setBoard_category (1);
+			
 		}
 		model.addAttribute("category", vo.getBoard_category());
 		model.addAttribute("boardList", service.boardListRead(vo));
@@ -76,10 +77,11 @@ public class BoardController {
 	}
 	
 	@GetMapping("board-read")
-	public String boardRead(BoardVO vo, Model model) {
-		vo.setMember_no(1); // d임시 유저벊ㅗ;
-		model.addAttribute("board", service.boardRead(vo));
+	public String boardRead(BoardVO vo,  Model model, CommentVO cvo) {
 		
+		model.addAttribute("board", service.boardRead(vo));
+		cvo.setBoard_no(vo.getBoard_no());
+		model.addAttribute("viewBoardReply", service.viewReply(cvo));
 		return "board/boardRead";
 	}
 	
@@ -91,13 +93,13 @@ public class BoardController {
 	
 	@PostMapping("board-register")
 	public String boardRegister(BoardVO boardVO, TagVO tagVO, @RequestParam("tags") String tags) {
-		String category = URLEncoder.encode(boardVO.getCategory_type(), StandardCharsets.UTF_8);
+		String category = URLEncoder.encode(boardVO.getBoard_category(), StandardCharsets.UTF_8);
 		if(boardVO.getBoard_no() != 0) {
 			service.boardModify(boardVO);
 		} else {
 			service.boardWrite(boardVO, tagVO, tags);
 		}
-		return "redirect:/board/board-list?board_category=" + category;
+		return "redirect:/board/list?board_category=" + category;
 	}
 	
 	@PostMapping("board-modify")

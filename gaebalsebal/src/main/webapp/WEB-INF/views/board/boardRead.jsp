@@ -327,7 +327,7 @@
 				</div>
 
 
-				<div class="col-lg-9 col-md-7">
+<%-- 				<div class="col-lg-9 col-md-7">
 					<div class="product__discount">
 						<div class="section-title product__discount__title">
 							<div id="boardTitle">
@@ -392,7 +392,188 @@
 										</div>
 									</ul>
 								</footer>
+							</article> --%>
+							
+						<div class="col-lg-9 col-md-7">
+					<div class="product__discount">
+						<div class="section-title product__discount__title">
+							<div id="boardTitle">
+								<h2 id="boardTitleH2">자유 게시판</h2>
+								<p></p>
+								<p>자유로운 글쓰기가 가능한 게시판입니다</p>
+							</div>
+						</div>
+							<div class="board_bt_wrap">
+								<button type="button" class="btn btn-outline-success" onclick="modify();">글 수정하기</button>
+							</div>
+							<article class="post">
+								<header>
+									<div class="title">
+					                   ${board.board_title}
+					                </div>
+									<div class="meta" id="meta">
+										<a href="#" class="author"><img src="/img/character.jpg">&emsp;<span class="name">${board.board_writer_nickname}</span></a>
+										<div class="info">
+						                    <dl>
+						                        <dt>게시일</dt>
+						                        <dd><fmt:formatDate value="${board.board_create_date }" pattern="yyyy.MM.dd"/></dd>
+						                    </dl>
+						                    <dl>
+						                        <dt>조회수</dt>
+						                        <dd>${board.board_view }</dd>
+						                    </dl>
+										</div>
+									</div>
+								</header>
+										<form id="boardForm" action="/board/board-register" method="get">
+						                    <input type="text" name="board_no" value="${board.board_no }" hidden="true">
+						                    <input type="text" name="board_category" value="${board.board_category }" hidden="true">
+						                    <input type="text" name="board_title" value="${board.board_title }" hidden="true">
+						                    <input type="text" name="board_content" value="${board.board_content }" hidden="true">
+					                    </form>
+								<div id="blank"></div>
+								<p>
+									<p>${board.board_content}</p>
+
+								</p>
+								<footer>	
+									<ul class="stats">
+										<div>
+										<c:forEach items="${board.tag_list}"  var="tag">
+										 <li> <a href="#">${tag.tag_name}</a></li>
+										</c:forEach>
+
+										</div>
+										<div>
+									
+										<li class="like-toggle" >
+										<c:if test="${0 == board.board_like_check}">
+										<i class="fa-sharp fa-regular fa-heart" style="color: #4ec224; cursor: pointer;" onclick='like(this)'></i>
+										</c:if>
+										<c:if test="${1 == board.board_like_check}">
+										<i class="fa-sharp fa-solid fa-heart" style="color: #4ec224; cursor: pointer;" onclick='like(this)'></i>
+										</c:if>
+										
+										<span class="like-count"> ${board.board_like} </span></li>
+										</div>
+									</ul>
+								</footer>
 							</article>
+							
+							
+							<!-- 댓글 -->
+							<div class="row">
+							                <div class="col-lg-12">
+							                    <div class="reply_table">
+							                   		<div class="reply_table_write">댓글쓰기 
+							                   			<div class="back">
+							                   				<form class="form" action="comment_insert" method="post">
+							                   				<%-- 댓글입력창  --%>
+							                   				<input type="hidden" name= "board_no" value=4<%-- ${board_no} --%>>
+							                   				<input type="hidden" name= "member_no" value=5<%-- ${member_no} --%>>
+							                   				<input type="hidden" name= "comments_writer" value="삼번<%-- ${comments_writer} --%>"/>						                   				
+							                   				<textarea class="font" cols="70" rows="5" name="comments_content"></textarea>
+							                   				<button type="submit" class="btn btn-primary btn-sm" id="btngreen">등록</button>															
+							                   				</form>
+							                   			</div>
+							                   		</div>
+							                   		<div class="reply_table_write">댓글</div>
+							                        <table >
+							                            <thead>
+							                                <tr>
+							                        		<th></th>
+							                        		<th></th>
+							                        		<th></th>
+							                        		<th></th>
+							                        		<th></th>
+							                        		<th></th>
+							                        		<th></th>
+							                                </tr>
+							                            </thead>
+							                            <tbody>
+
+							                            	<c:forEach items="${viewBoardReply}" var="viewReply" varStatus="i">
+							                                <tr >
+							                                	<c:choose>
+							                                		<%-- 댓글--%>
+							                                		<c:when test="${viewReply.comments_group == ''}">
+							                                			<c:choose>
+								                                			<c:when test="${viewReply.comments_use_yn == 'Y'}">
+									                                    		<td colspan="2" class="shoping__cart__item" id="reply_name"><a href="#" class="author"><img src="/img/character.jpg">&emsp;<span class="name">${viewReply.comments_writer}</span></a></td>
+									                                    		<td class="reply_table" id="reply_write">${viewReply.comments_content}</td>
+											                                    <td class="reply_table" id="reply_date">${viewReply.comments_create_date}</td>
+											                                    <td class="hidden" id="comments_no">${viewReply.comments_no}</td>
+											                                    <td class="hidden" id="member_no">${viewReply.member_no}</td>
+											                                    <td class="hidden" id="deleted">${viewReply.comments_use_yn}</td>
+											                                    <td id="reply_reply"><button class="doReply" onclick="openBox(${i.index})"<%-- rereply_forms(this.id) --%> id="rereply${i.index}"><i class="fa-regular fa-comment-dots fa-xl" style="color: #585cdf;"></i></button></td>
+											                                    <td class="shoping__cart__item__close" id="reply_close"><button onclick="deleteComment(${viewReply.member_no}, ${viewReply.comments_no}, 4<%-- ${board_no} ★--%>)"><span class="icon_close"></span></button></td>
+											                            	</c:when>
+											                            	<c:otherwise>
+											                            		<td colspan="2" class="shoping__cart__item" id="reply_name"><a href="#" class="author"><img src="/img/character.jpg">&emsp;<span class="name">${viewReply.comments_writer}</span></a></td>
+									                                    		<td class="reply_table" id="reply_write">작성자에 의해 삭제된 댓글입니다.</td>
+											                                    <td class="reply_table" id="reply_date">---------------------</td>
+											                                    <td class="hidden" id="comments_no">${viewReply.comments_no}</td>
+											                                    <td class="hidden" id="member_no">${viewReply.member_no}</td>
+											                                    <td class="hidden" id="deleted">${viewReply.comments_use_yn}</td>
+											                                    <td class="shoping__cart__item__close" id="reply_close"><button onclick="deleteComment(${viewReply.member_no}, ${viewReply.comments_no}, 4<%-- ${board_no} ★--%>)"><span class="icon_close"></span></button></td>
+											                            	</c:otherwise>
+										                            	</c:choose>
+									                                <%-- 대댓글 입력창--%>
+									                                <tr class="rereply_form" id = "openBox${i.index}">
+									                                	<td colspan="7">
+																		<form action="/board/recomment_insert" method="post" style="none">
+																			<input type="hidden" name= "board_no" value=4<%-- ${board_no} --%>>
+											                   				<input type="hidden" name= "member_no" value=9<%-- ${member_no} --%>>
+											                   				<input type="hidden" name= "comments_writer" value="퇴근<%-- ${board_writer} --%>"/>
+											                   				<input type="hidden" name= "comments_group" value="${viewReply.comments_no}"/>
+											                   				<textarea class="font" cols="90" rows="3" name="comments_content"></textarea>
+											                   				<button type="submit" class="btn btn-primary btn-sm">등록</button>		
+																		</form>
+																		</td>
+																	</tr>
+							                                    	</c:when>
+							                                    	
+
+							                                    	<%-- 대댓글--%>
+							                                    	<c:otherwise>
+																		<c:choose>
+								                                			<c:when test="${viewReply.comments_use_yn == 'Y'}">
+								                                    		<td class="reply_table" id="rereply_flag">&emsp;<i class="fa-solid fa-turn-up fa-rotate-90" style="color: #6c6ad2;"></i></td>
+								                                    		<td class="shoping__cart__item" id="reply_name"><a href="#" class="author"><img src="/img/character.jpg">&emsp;<span class="name">${viewReply.comments_writer}</span></a></td>
+								                                    		<td class="reply_table" id="reply_write">${viewReply.comments_content}</td>
+										                                    <td class="reply_table" id="reply_date">${viewReply.comments_create_date}</td>
+										                                    <td class="hidden" id="comments_no">${viewReply.comments_no}</td>
+										                                    <td class="hidden" id="member_no">${viewReply.member_no}</td>
+										                                    <td class="hidden" id="deleted">${viewReply.comments_use_yn}</td>
+										                                    <td class="shoping__cart__item__close" id="reply_close"><button onclick="deleteComment(${viewReply.member_no}, ${viewReply.comments_no}, 4<%-- ${board_no} ★--%>)"><span class="icon_close"></span></button></td>								                              		
+								                              				</c:when>
+
+								                                			<c:otherwise>
+								                                    		<td class="reply_table" id="rereply_flag">&emsp;<i class="fa-solid fa-turn-up fa-rotate-90" style="color: #6c6ad2;"></i></td>
+								                                    		<td class="shoping__cart__item" id="reply_name"><a href="#" class="author"><img src="/img/character.jpg">&emsp;<span class="name">${viewReply.comments_writer}</span></a></td>
+								                                    		<td class="reply_table" id="reply_write">작성자에 의해 삭제된 댓글입니다.</td>
+										                                    <td class="reply_table" id="reply_date">---------------------</td>
+										                                    <td class="hidden" id="comments_no">${viewReply.comments_no}</td>
+										                                    <td class="hidden" id="member_no">${viewReply.member_no}</td>
+										                                    <td class="hidden" id="deleted">${viewReply.comments_use_yn}</td>
+										                                    <td class="shoping__cart__item__close" id="reply_close"><button onclick="deleteComment(${viewReply.member_no}, ${viewReply.comments_no}, 4<%-- ${board_no} ★--%>)"><span class="icon_close"></span></button></td>								                              		
+								                              				</c:otherwise>
+								                              			</c:choose>	
+								                              		</c:otherwise>
+							                              		</c:choose>
+							                                </tr>
+
+															
+														</c:forEach>
+						                            </tbody>
+						                        </table>
+							                    </div>
+							                </div>
+							            </div>
+					  		 </div> 		
+					   </div>	
+							
+							
 					</div>
 				</div>
 			</div>

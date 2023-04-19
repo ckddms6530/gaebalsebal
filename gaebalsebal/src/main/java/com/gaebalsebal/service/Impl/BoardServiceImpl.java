@@ -8,6 +8,7 @@ import java.util.regex.Pattern;
 import org.springframework.stereotype.Service;
 
 import com.gaebalsebal.domain.BoardVO;
+import com.gaebalsebal.domain.CommentVO;
 import com.gaebalsebal.domain.Criteria;
 import com.gaebalsebal.domain.TagVO;
 import com.gaebalsebal.persistence.BoardMapper;
@@ -87,6 +88,27 @@ public class BoardServiceImpl implements BoardService{
 		return mapper.decreaseLikeCount(vo);
 	}
 	
+	@Override
+	public List<CommentVO> viewReply(CommentVO vo) {
+	
+		return mapper.viewReply(vo);
+	}
+
+	@Override
+	public void saveComment(CommentVO vo) {
+		mapper.insertReply(vo);
+	}
+	
+	@Override
+	public void saveRecomment(CommentVO vo) {
+		mapper.insertRereply(vo);
+	}
+
+	@Override
+	public void saveDeleteComment(CommentVO vo) {
+		mapper.deleteReply(vo);
+		
+	}
 	
 	
 

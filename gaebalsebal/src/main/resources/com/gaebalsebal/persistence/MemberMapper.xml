@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  <mapper namespace="com.gaebalsebal.persistence.MemberMapper">
+  		<insert id="memberJoin" >
+  			INSERT INTO member(member_no, member_name, member_id, member_pw, member_nickname, member_email) 
+  			VALUES(member_seq.nextval, #{member_name}, #{member_id}, #{member_pw}, #{member_nickname}, #{member_email})
+  		</insert>
+  		
+	  	<select id="idCheck" resultType="int">
+		    SELECT COUNT(*) FROM member WHERE member_id = #{member_id}
+		</select>
+		  		
+  	
+  </mapper>
